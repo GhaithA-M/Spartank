@@ -1,6 +1,3 @@
-/* style.css */
-
-/* Basic Reset */
 * {
     margin: 0;
     padding: 0;
@@ -18,10 +15,11 @@ body {
     display: flex;
     flex-direction: column;
     gap: 20px;
+    padding: 5px;
 }
 
 .fuel-station {
-    background: #333; /* Dark background for the station panel */
+    background: #333; /* Background for the station panel */
     padding: 10px;
     border-radius: 10px;
 }
@@ -34,16 +32,16 @@ body {
 }
 
 .station-logo {
-    height: 50px; /* Fixed height for logos */
+    height: 50px; /* Height for logos */
 }
 
 .station-name {
     font-size: 1.5em;
-    color: #FFD700; /* Gold color for the station name */
+    color: #FFD700; /* Color for the station name */
 }
 
 .station-prices {
-    background: #444; /* Slightly lighter background for prices */
+    background: #444; /* Background for prices */
     padding: 10px;
     border-radius: 5px;
 }
@@ -61,7 +59,7 @@ body {
 
 .price-value {
     font-weight: bold;
-    color: #FF4500; /* Orange color for prices */
+    color: #FF4500; /* Color for prices */
 }
 
 /* Responsive design for larger screens */
@@ -72,7 +70,7 @@ body {
     }
 
     .fuel-station {
-        flex: 1 1 45%; /* Two stations per row */
+        flex: 1 1 45%; /* Stations per row */
         max-width: calc(50% - 20px); /* Accounting for gap */
     }
 

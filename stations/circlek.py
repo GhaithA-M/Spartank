@@ -4,42 +4,47 @@ from bs4 import BeautifulSoup
 
 def fetch_html(url):
     response = requests.get(url)
-    response.raise_for_status()  # Raises an HTTPError if the HTTP request returned an unsuccessful status code
+    response.raise_for_status()  # Raises an HTTPError for bad responses
     return response.text
 
 def parse_circlek(html_content):
     soup = BeautifulSoup(html_content, 'html.parser')
-    prices_table = soup.find('table', class_='uk-table uk-table-striped uk-table-responsive')
+    rows = soup.find_all('tr')
+    
     fuel_prices = []
-
-    if prices_table:
-        rows = prices_table.find_all('tr')[1:]  # Skip header row
-        for row in rows:
-            cols = row.find_all('td')
-            product_name = cols[1].get_text(strip=True)
-            price = cols[2].get_text(strip=True).replace(' kr.', '')  # Remove ' kr.' from the price
-            date = cols[3].find('time').get('datetime', '').split('T')[0]  # Extract date only
-            fuel_prices.append({
-                'product_name': product_name,
-                'price': price,
-                'date': date
-            })
+    for row in rows:
+        cells = row.find_all('td')
+        if len(cells) >= 6:  # Ensure there are enough cells in the row
+            try:
+                fuel_type = cells[1].text.strip()
+                price = cells[2].text.strip() + ' kr.'
+                date = cells[3].find('time')['datetime'].split('T')[0]  # Extract date
+                fuel_prices.append({
+                    'Fuel Type': fuel_type,
+                    'Price': price,
+                    'Last Updated': date
+                })
+            except (IndexError, TypeError, AttributeError):
+                # This handles any unexpected HTML format or missing data
+                continue
 
     return fuel_prices
 
-def write_to_json(data, output_file_path):
-    with open(output_file_path, 'w', encoding='utf-8') as file:
-        json.dump(data, file, ensure_ascii=False, indent=4)
+def write_to_json(data, output_file_name):
+    with open(output_file_name, 'w', encoding='utf-8') as f:
+        json.dump(data, f, ensure_ascii=False, indent=4)
 
-# Example usage:
-circlek_url = 'https://www.circlek.dk/priser'  # Replace with the correct URL
-output_file_path = 'stations/circlek_prices.json'  # Replace with the desired output path
+# URL to the Circle K fuel prices page
+circlek_url = 'https://www.circlek.dk/priser'
 
-# Fetch HTML content
+# Fetch the HTML content from the Circle K website
 html_content = fetch_html(circlek_url)
 
-# Parse the HTML content
-circlek_prices = parse_circlek(html_content)
+# Parse the HTML content to extract fuel prices
+fuel_prices = parse_circlek(html_content)
 
-# Write the parsed data to a JSON file
-write_to_json(circlek_prices, output_file_path)
+# Output file path for the JSON data
+output_file_name = 'stations/circlek_prices.json'
+
+# Write the extracted data to a JSON file
+write_to_json(fuel_prices, output_file_name)
