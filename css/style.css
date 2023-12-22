@@ -1,0 +1,82 @@
+/* style.css */
+
+/* Basic Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #1a1a1a;
+    color: white;
+    padding: 20px;
+}
+
+.fuel-stations {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.fuel-station {
+    background: #333; /* Dark background for the station panel */
+    padding: 10px;
+    border-radius: 10px;
+}
+
+.station-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 15px;
+}
+
+.station-logo {
+    height: 50px; /* Fixed height for logos */
+}
+
+.station-name {
+    font-size: 1.5em;
+    color: #FFD700; /* Gold color for the station name */
+}
+
+.station-prices {
+    background: #444; /* Slightly lighter background for prices */
+    padding: 10px;
+    border-radius: 5px;
+}
+
+/* Individual price entry */
+.price-entry {
+    display: flex;
+    justify-content: space-between;
+    padding: 5px 0;
+}
+
+.price-label {
+    font-weight: bold;
+}
+
+.price-value {
+    font-weight: bold;
+    color: #FF4500; /* Orange color for prices */
+}
+
+/* Responsive design for larger screens */
+@media (min-width: 600px) {
+    .fuel-stations {
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
+
+    .fuel-station {
+        flex: 1 1 45%; /* Two stations per row */
+        max-width: calc(50% - 20px); /* Accounting for gap */
+    }
+
+    .station-name {
+        font-size: 2em;
+    }
+}
