@@ -16,8 +16,8 @@ def parse_ok(html_content):
         try:
             # Extracting the fuel type and price
             fuel_type = row.find('div', {'class': 'cell--lbl'}).text.strip()
-            price = row.find('div', {'class': 'cell--val'}).text.strip()
-            
+            price = row.find('div', {'class': 'cell--val'}).text.strip().replace('kr.', '').strip() + ' kr/l'
+
             fuel_prices.append({
                 'Fuel Type': fuel_type,
                 'Price': price

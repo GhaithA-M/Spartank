@@ -1,17 +1,17 @@
 [
     {
         "Fuel Type": " Benzin 95",
-        "Price": " 13,09 kr.",
+        "Price": " 13,09 kr/l",
         "Last Updated": "2023-12-19"
     },
     {
         "Fuel Type": " Diesel",
-        "Price": " 12,39 kr.",
+        "Price": " 12,39 kr/l",
         "Last Updated": "2023-12-20"
     },
     {
         "Fuel Type": " UPGRADE 95",
-        "Price": " 13,58 kr.",
+        "Price": " 13,58 kr/l",
         "Last Updated": "2023-12-19"
     }
 ]

@@ -7,7 +7,7 @@ def fetch_html(url):
     response.raise_for_status()  # Raises an HTTPError for bad responses
     return response.text
 
-def parse_circlek(html_content):
+def parse_ingo(html_content):
     soup = BeautifulSoup(html_content, 'html.parser')
     rows = soup.select('.ck-prices-per-product table tbody tr')  # Adjusted selector
     
@@ -17,7 +17,7 @@ def parse_circlek(html_content):
         if len(cells) >= 4:  # Ensure there are enough cells in the row
             try:
                 fuel_type = cells[1].text.strip().split(':')[1]  # Adjusted to split by ':' and take the second part
-                price = cells[2].text.strip().split(':')[1] + ' kr.'  # Adjusted similarly
+                price = cells[2].text.strip().split(':')[1] + ' kr/l'  # Adjusted similarly
                 date = cells[3].find('time')['datetime'].split('T')[0]  # Extract date
                 fuel_prices.append({
                     'Fuel Type': fuel_type,
@@ -41,7 +41,7 @@ ingo_url = 'https://www.ingo.dk/vores-lave-priser/br%C3%A6ndstofpriser/aktuelle-
 html_content = fetch_html(ingo_url)
 
 # Parse the HTML content to extract fuel prices
-fuel_prices = parse_circlek(html_content)
+fuel_prices = parse_ingo(html_content)
 
 # Output file path for the JSON data
 output_file_name = 'stations/ingo_prices.json'

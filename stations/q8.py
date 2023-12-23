@@ -16,7 +16,8 @@ def parse_q8(html_content):
         try:
             # Extracting the fuel type and price
             fuel_type = item.find('span', {'class': 'display-name'}).text.strip()
-            price = item.find('div', {'class': 'price'}).text.strip()
+            # Replace 'kr./l' with empty string and add ' kr/l' manually
+            price = item.find('div', {'class': 'price'}).text.strip().replace('kr./l', '').strip() + ' kr/l'
             
             fuel_prices.append({
                 'Fuel Type': fuel_type,
@@ -27,6 +28,7 @@ def parse_q8(html_content):
             continue
 
     return fuel_prices
+
 
 def write_to_json(data, output_file_name):
     with open(output_file_name, 'w', encoding='utf-8') as f:

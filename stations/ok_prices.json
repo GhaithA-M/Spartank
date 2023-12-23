@@ -1,14 +1,14 @@
 [
     {
         "Fuel Type": "Blyfri 95",
-        "Price": "14,29 kr."
+        "Price": "14,29 kr/l"
     },
     {
         "Fuel Type": "Oktan 100",
-        "Price": "15,58 kr."
+        "Price": "15,58 kr/l"
     },
     {
         "Fuel Type": "Diesel",
-        "Price": "13,59 kr."
+        "Price": "13,59 kr/l"
     }
 ]

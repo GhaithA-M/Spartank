@@ -12,6 +12,6 @@ def scrape_station(station_name):
 
     # Fetch and return the prices from the respective station module
     if station_name in station_modules:
-        return station_modules[station_name].fetch_prices()
+        return station_modules[station_name]
     else:
         raise ValueError(f"No module found for {station_name}")
