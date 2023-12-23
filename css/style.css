@@ -29,6 +29,11 @@ body {
     align-items: center;
     gap: 10px;
     margin-bottom: 15px;
+    cursor: pointer;
+    background: none;
+    border: none;
+    padding: 0;
+    text-align: left;
 }
 
 .station-logo {
@@ -44,6 +49,11 @@ body {
     background: #444; /* Background for prices */
     padding: 10px;
     border-radius: 5px;
+    display: none;
+}
+
+.station-prices.show {
+    display: block;
 }
 
 /* Individual price entry */

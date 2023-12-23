@@ -1,4 +1,4 @@
-from stations import ingo, ok, f24, q8, shellservice, circlek
+from stations import ingo, ok, f24, q8, circlek
 
 def scrape_station(station_name):
     # Map station names to their respective modules
@@ -7,7 +7,6 @@ def scrape_station(station_name):
         'ok': ok,
         'f24': f24,
         'q8': q8,
-        'shellservice': shellservice,
         'circlek': circlek
     }
 

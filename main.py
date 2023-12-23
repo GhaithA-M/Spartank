@@ -1,7 +1,7 @@
 import scraper
 
 def main():
-    stations = ['ingo', 'ok', 'f24', 'q8', 'shellservice', 'circlek']
+    stations = ['ingo', 'ok', 'f24', 'q8', 'circlek']
     
     for station in stations:
         try:

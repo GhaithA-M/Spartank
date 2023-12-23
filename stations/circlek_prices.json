@@ -1,37 +1,37 @@
 [
     {
-        "Fuel Type": "Beskrivelse: miles95.",
-        "Price": "Pris inkl. moms: 13,19 kr.",
+        "Fuel Type": "miles95.",
+        "Price": "13,19 kr.",
         "Last Updated": "2023-12-19"
     },
     {
-        "Fuel Type": "Beskrivelse: miles+95.",
-        "Price": "Pris inkl. moms: 13,89 kr.",
+        "Fuel Type": "miles+95.",
+        "Price": "13,89 kr.",
         "Last Updated": "2023-12-19"
     },
     {
-        "Fuel Type": "Beskrivelse: miles Diesel.",
-        "Price": "Pris inkl. moms: 12,49 kr.",
+        "Fuel Type": "miles Diesel.",
+        "Price": "12,49 kr.",
         "Last Updated": "2023-12-20"
     },
     {
-        "Fuel Type": "Beskrivelse: miles+ Diesel.",
-        "Price": "Pris inkl. moms: 13,19 kr.",
+        "Fuel Type": "miles+ Diesel.",
+        "Price": "13,19 kr.",
         "Last Updated": "2023-12-20"
     },
     {
-        "Fuel Type": "Beskrivelse: El Lynlader.",
-        "Price": "Pris inkl. moms: 3,95 kr.",
+        "Fuel Type": "El Lynlader.",
+        "Price": "3,95 kr.",
         "Last Updated": "2023-11-15"
     },
     {
-        "Fuel Type": "Beskrivelse: Fyringsolie Basis.",
-        "Price": "Pris inkl. moms: 15 750,00 kr.",
+        "Fuel Type": "Fyringsolie Basis.",
+        "Price": "15 750,00 kr.",
         "Last Updated": "2023-12-21"
     },
     {
-        "Fuel Type": "Beskrivelse: Fyringsolie Premium.",
-        "Price": "Pris inkl. moms: 16 050,00 kr.",
+        "Fuel Type": "Fyringsolie Premium.",
+        "Price": "16 050,00 kr.",
         "Last Updated": "2023-12-21"
     }
 ]

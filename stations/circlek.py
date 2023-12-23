@@ -16,8 +16,10 @@ def parse_circlek(html_content):
         cells = row.find_all('td')
         if len(cells) >= 6:  # Ensure there are enough cells in the row
             try:
-                fuel_type = cells[1].text.strip()
-                price = cells[2].text.strip() + ' kr.'
+                # Remove 'Beskrivelse:' from the fuel type
+                fuel_type = cells[1].text.strip().replace('Beskrivelse: ', '')
+                # Remove 'Pris inkl. moms:' from the price
+                price = cells[2].text.strip().replace('Pris inkl. moms: ', '') + ' kr.'
                 date = cells[3].find('time')['datetime'].split('T')[0]  # Extract date
                 fuel_prices.append({
                     'Fuel Type': fuel_type,
