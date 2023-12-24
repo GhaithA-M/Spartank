@@ -7,13 +7,15 @@ const stations = [
     { id: "q8", file: "q8_prices.json" }
 ];
 
-// Function to load and display prices for each station
+// Assuming 'stations' is an array of station data
 stations.forEach(station => {
+    // Select the station prices div
+    let stationPrices = document.getElementById(`station-${station.id}-prices`);
+
+    // Fetch and display prices for the station
     fetch(`stations/${station.file}`)
         .then(response => response.json())
         .then(prices => {
-            const pricesDiv = document.querySelector(`#station-${station.id}-prices`);
-            pricesDiv.innerHTML = ''; // Clear existing content
             prices.forEach(price => {
                 // Create and append the price entry
                 const priceEntry = document.createElement('div');
@@ -22,11 +24,9 @@ stations.forEach(station => {
                     <span class="price-label">${price['Fuel Type']}</span>
                     <span class="price-value">${price['Price']}</span>
                 `;
-                pricesDiv.appendChild(priceEntry);
+                // Append the price entry to the correct station prices div
+                stationPrices.appendChild(priceEntry);
             });
-        })
-        .catch(error => {
-            console.error('Error loading station prices:', error);
         });
 });
 

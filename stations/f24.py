@@ -1,62 +1,69 @@
 import requests
 import json
-from bs4 import BeautifulSoup
 
-def fetch_html(url):
-    response = requests.get(url)
-    response.raise_for_status()  # Raises an HTTPError for bad responses
-    print(f"Response status code: {response.status_code}")  # Print the status code
-    return response.text
+def fetch_json_data(url, payload):
+    headers = {'Content-Type': 'application/json'}
+    response = requests.post(url, json=payload, headers=headers)
+    print("Status Code:", response.status_code)  # Print the status code
+    print("Response Headers:", response.headers)  # Print the response headers
+    
+    try:
+        json_data = response.json()
+        print("JSON Data:", json_data)  # Print the JSON response
+        return json_data
+    except json.JSONDecodeError:
+        print("Failed to parse JSON. Here's the response text:")
+        print(response.text)  # Print the raw response text
+        raise  # Re-raise the exception to halt the script
 
-def parse_f24(html_content):
-    soup = BeautifulSoup(html_content, 'html.parser')
-    rows = soup.select('tr')  # Adjusted selector to target rows with class 'ng-scope'
-    print(f"Number of rows: {len(rows)}")  # Print the number of rows
-
+def parse_f24(json_response):
     fuel_prices = []
-    for row in rows:
-    print(row) # Print the row
+    for item in json_response["Products"]:  # Adjusted to navigate the JSON structure correctly
         try:
-            # Extracting the fuel type and price
-            fuel_type_element = row.find('p', {'ng-switch-when': 'Name'})
-            price_element = row.find('p', {'ng-switch-default': ''})
-
-            if fuel_type_element is not None and price_element is not None:
-                fuel_type = fuel_type_element.text.strip()
-                price = price_element.text.strip().replace('Kr.', '').strip() + ' kr/l'
-                print(f"Fuel type: {fuel_type}, Price: {price}")  # Print the fuel type and price
-
-                fuel_prices.append({
-                    'Fuel Type': fuel_type,
-                    'Price': price
-                })
-        except (IndexError, TypeError, AttributeError) as e:
-            # Print the exception
-            print(f"Exception: {e}")
-            # Skip rows that don't have the expected structure
+            fuel_type = item['Name']
+            price = item['PriceInclVATInclTax'] + " kr/l"  # Append "kr/l" to the price
+            fuel_prices.append({
+                'Fuel Type': fuel_type,
+                'Price': price
+            })
+        except KeyError:
             continue
-
     return fuel_prices
 
 def write_to_json(data, output_file_name):
     with open(output_file_name, 'w', encoding='utf-8') as f:
         json.dump(data, f, ensure_ascii=False, indent=4)
 
-try:
-    # URL to the F24 fuel prices page (replace with the actual URL if different)
-    f24_url = 'https://www.f24.dk/priser/'
+# URL to the F24 fuel prices API
+f24_url = 'https://www.f24.dk/-/api/PriceViewProduct/GetPriceViewProducts'
 
-    # Fetch the HTML content from the F24 website
-    html_content = fetch_html(f24_url)
+# Define the request payload
+payload = {
+    "FuelsIdList": [
+        {"ProductCode": "22253", "Index": 0},
+        {"ProductCode": "22603", "Index": 1},
+        {"ProductCode": "24453", "Index": 2},
+        {"ProductCode": "24338", "Index": 3}
+    ],
+    "FromDate": 1700782708,
+    "ToDate": 1703374708,
+    "TaxIncludeMode": 0,
+    "ReportImageUri": None,
+    "ColumnInfo": [
+        {"Key": "Name", "Title": "Motor-brændstof"},
+        {"Key": "PriceExclTaxAndVAT", "Title": "Ekskl. moms og afgifter"},
+        {"Key": "PriceInclVATInclTax", "Title": "Inkl. moms og afgifter"}
+    ]
+}
 
-    # Parse the HTML content to extract fuel prices
-    fuel_prices = parse_f24(html_content)
+# Fetch the JSON content from the F24 API
+json_response = fetch_json_data(f24_url, payload)
 
-    # Output file path for the JSON data
-    output_file_name = 'stations/f24_prices.json'
+# Parse the JSON content to extract fuel prices
+fuel_prices = parse_f24(json_response)
 
-    # Write the extracted data to a JSON file
-    write_to_json(fuel_prices, output_file_name)
+# Output file path for the JSON data
+output_file_name = 'stations/f24_prices.json'
 
-except Exception as e:
-    print(f"Exception: {e}")
+# Write the extracted data to a JSON file
+write_to_json(fuel_prices, output_file_name)

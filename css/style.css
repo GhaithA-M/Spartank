@@ -12,14 +12,15 @@ body {
 }
 
 .fuel-stations {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-    padding: 5px;
+    border: 0px solid #000;
+    padding: 2px;
+    margin-bottom: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
 }
 
 .fuel-station {
-    background: #333; /* Background for the station panel */
+    background: #333;
     padding: 10px;
     border-radius: 10px;
 }
@@ -27,26 +28,27 @@ body {
 .station-header {
     display: flex;
     align-items: center;
-    gap: 10px;
-    margin-bottom: 15px;
+    justify-content: space-between;
+    width: 100%;
+    background-color: #2a2a2a;
+    padding: 5px;
+    border-radius: 5px;
     cursor: pointer;
-    background: none;
-    border: none;
-    padding: 0;
-    text-align: left;
 }
 
 .station-logo {
-    height: 50px; /* Height for logos */
+    max-width: 100px;
+    max-height: 45px;
+    object-fit: contain;
 }
 
 .station-name {
-    font-size: 1.5em;
-    color: #FFD700; /* Color for the station name */
+    flex-grow: 1;
+    text-align: center;
 }
 
 .station-prices {
-    background: #444; /* Background for prices */
+    background: #444;
     padding: 10px;
     border-radius: 5px;
     display: none;
@@ -56,7 +58,6 @@ body {
     display: block;
 }
 
-/* Individual price entry */
 .price-entry {
     display: flex;
     justify-content: space-between;
@@ -69,10 +70,9 @@ body {
 
 .price-value {
     font-weight: bold;
-    color: #FF4500; /* Color for prices */
+    color: #FF4500;
 }
 
-/* Responsive design for larger screens */
 @media (min-width: 600px) {
     .fuel-stations {
         flex-direction: row;
@@ -80,11 +80,21 @@ body {
     }
 
     .fuel-station {
-        flex: 1 1 45%; /* Stations per row */
-        max-width: calc(50% - 20px); /* Accounting for gap */
+        flex: 1 1 45%;
+        max-width: calc(50% - 20px);
     }
 
     .station-name {
         font-size: 2em;
     }
+}
+
+.github-hyperlink {
+    color: #4caf50;
+    background-color: #66c0f4;
+    text-align: center;
+    border-radius: 5px;
+    width: 30%;
+    padding: 3px;
+    margin: 5px auto;
 }
