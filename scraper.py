@@ -1,13 +1,13 @@
-from stations import ingo, ok, f24, q8, circlek
+from stations import circlek, f24, ingo, ok, q8
 
 def scrape_station(station_name):
     # Map station names to their respective modules
     station_modules = {
-        'ingo': ingo,
-        'ok': ok,
+        'circlek': circlek,
         'f24': f24,
-        'q8': q8,
-        'circlek': circlek
+        'ingo': ingo,
+        'ok': ok,        
+        'q8': q8
     }
 
     # Fetch and return the prices from the respective station module

@@ -5,15 +5,15 @@ def fetch_json_data(url, payload):
     headers = {'Content-Type': 'application/json'}
     response = requests.post(url, json=payload, headers=headers)
     print("Status Code:", response.status_code)  # Print the status code
-    print("Response Headers:", response.headers)  # Print the response headers
+#    print("Response Headers:", response.headers)  # Print the response headers
     
     try:
         json_data = response.json()
-        print("JSON Data:", json_data)  # Print the JSON response
+#        print("JSON Data:", json_data)  # Print the JSON response
         return json_data
     except json.JSONDecodeError:
         print("Failed to parse JSON. Here's the response text:")
-        print(response.text)  # Print the raw response text
+#        print(response.text)  # Print the raw response text
         raise  # Re-raise the exception to halt the script
 
 def parse_f24(json_response):

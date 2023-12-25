@@ -15,7 +15,7 @@ def parse_q8(html_content):
     for item in price_items:
         try:
             # Extracting the fuel type and price
-            fuel_type = item.find('span', {'class': 'display-name'}).text.strip()
+            fuel_type = item.find('span', {'class': 'display-name'}).text.strip().replace('Q8', '').strip()
             # Replace 'kr./l' with empty string and add ' kr/l' manually
             price = item.find('div', {'class': 'price'}).text.strip().replace('kr./l', '').strip() + ' kr/l'
             
