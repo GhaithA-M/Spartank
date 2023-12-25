@@ -21,8 +21,10 @@ stations.forEach(station => {
                 const priceEntry = document.createElement('div');
                 priceEntry.classList.add('price-entry');
                 priceEntry.innerHTML = `
-                    <span class="price-label">${price['Fuel Type']}</span>
-                    <span class="price-value">${price['Price']}</span>
+                    <div class="fuel-price-container">
+                        <span class="price-label">${price['Fuel Type']}</span>
+                        <span class="price-value">${price['Price']}</span>
+                    </div>
                 `;
                 // Append the price entry to the correct station prices div
                 stationPrices.appendChild(priceEntry);

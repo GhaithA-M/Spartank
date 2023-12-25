@@ -7,14 +7,11 @@ document.addEventListener('DOMContentLoaded', (event) => {
         return response.json();
     })
     .then(data => {
-        console.log("Fetched data:", data);  // Log the fetched data
-
-        // Find the object for "miles Diesel"
+        console.log("Fetched data:", data);
         const date = data.find(item => item["Fuel Type"] === "miles95");
-
-        // Get the "Last Updated" date for "miles Diesel"
-        const lastUpdatedDate = date["Last Updated"];
-
+        let lastUpdatedDate = date["Last Updated"];
+        let dateObj = new Date(lastUpdatedDate);
+        lastUpdatedDate = `${dateObj.getDate().toString().padStart(2, '0')}/${(dateObj.getMonth() + 1).toString().padStart(2, '0')}/${dateObj.getFullYear()}`;
         const dateEntry = document.createElement('h4');
         dateEntry.textContent = `Pris sidst opdateret: ${lastUpdatedDate}`;
         document.querySelector('.last-update-date').appendChild(dateEntry);
