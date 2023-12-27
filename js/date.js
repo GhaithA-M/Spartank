@@ -13,7 +13,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
         let dateObj = new Date(lastUpdatedDate);
         lastUpdatedDate = `${dateObj.getDate().toString().padStart(2, '0')}/${(dateObj.getMonth() + 1).toString().padStart(2, '0')}/${dateObj.getFullYear()}`;
         const dateEntry = document.createElement('h4');
-        dateEntry.textContent = `Pris sidst opdateret: ${lastUpdatedDate}`;
+        dateEntry.textContent = `Priser sidst opdateret: ${lastUpdatedDate}`;
         document.querySelector('.last-update-date').appendChild(dateEntry);
     })
     .catch(error => console.error('Error:', error));
