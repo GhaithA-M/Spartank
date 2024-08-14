@@ -1,22 +1,22 @@
 [
     {
         "Fuel Type": "miles95",
-        "Price": "14,99 kr/l",
-        "Last Updated": "2024-04-15"
+        "Price": "14,29 kr/l",
+        "Last Updated": "2024-08-13"
     },
     {
         "Fuel Type": "miles+95",
-        "Price": "15,69 kr/l",
-        "Last Updated": "2024-04-15"
+        "Price": "15,09 kr/l",
+        "Last Updated": "2024-08-13"
     },
     {
         "Fuel Type": "miles Diesel",
-        "Price": "12,99 kr/l",
-        "Last Updated": "2024-04-15"
+        "Price": "12,39 kr/l",
+        "Last Updated": "2024-08-08"
     },
     {
         "Fuel Type": "miles+ Diesel",
-        "Price": "13,69 kr/l",
-        "Last Updated": "2024-04-15"
+        "Price": "13,19 kr/l",
+        "Last Updated": "2024-08-08"
     }
 ]
